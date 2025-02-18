@@ -28,6 +28,17 @@ Features
 
 * TODO
 
+Building Documentation
+----------------------
+
+To build the documentation, navigate to the `docs` directory and run:
+
+.. code-block:: console
+
+    $ make html
+
+This will generate the HTML documentation in the `_build/html` directory.
+
 Credits
 -------
 

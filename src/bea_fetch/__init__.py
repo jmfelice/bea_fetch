@@ -1,5 +1,6 @@
-"""Top-level package for bea_fetch."""
+# Import specific functions
+from .util import write_to_csv
+from .fetch_bea_data import fetch_bea_nipa_data, fetch_bea_nipa_data_to_csv
+from .fetch_bea_parameters import fetch_bea_parameters, fetch_bea_parameters_to_csv
 
-__author__ = """Jared Felice"""
-__email__ = 'jmfelice@icloud.com'
 __version__ = '0.1.0'

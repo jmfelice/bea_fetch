@@ -8,7 +8,6 @@ Welcome to bea_fetch's documentation!
    readme
    installation
    usage
-   modules
    contributing
    authors
    history
