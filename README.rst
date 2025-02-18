@@ -13,36 +13,19 @@ bea_fetch
         :target: https://bea-fetch.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
 
-
-
-
-Python Boilerplate contains all the boilerplate you need to create a Python package.
-
-
 * Free software: MIT license
 * Documentation: https://bea-fetch.readthedocs.io.
+
+
+Overview
+--------
+
+`bea_fetch` is a Python package designed to automate the process of pulling economic data from the Bureau of Economic Analysis (BEA) and storing it in CSV files. The current implementation focuses on the National Income and Product Accounts (NIPA) dataset, but the package is designed to be extensible, allowing for the inclusion of additional datasets in the future.
 
 
 Features
 --------
 
-* TODO
-
-Building Documentation
-----------------------
-
-To build the documentation, navigate to the `docs` directory and run:
-
-.. code-block:: console
-
-    $ make html
-
-This will generate the HTML documentation in the `_build/html` directory.
-
-Credits
--------
-
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+- Fetch data from the BEA API.
+- Store the retrieved data in CSV format for easy access and automation.
+- Future support for multiple datasets beyond NIPA.

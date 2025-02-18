@@ -1,4 +1,4 @@
-Welcome to bea_fetch's documentation!
+bea_fetch
 ======================================
 
 .. toctree::
@@ -8,12 +8,13 @@ Welcome to bea_fetch's documentation!
    readme
    installation
    usage
-   contributing
-   authors
-   history
 
-Indices and tables
-==================
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+
+
+Functions
+==========
+
+.. automodule:: bea_fetch.fetch_bea_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
