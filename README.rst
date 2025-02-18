@@ -3,7 +3,6 @@ bea_fetch
 =========
 
 * Free software: MIT license
-* Documentation: https://bea-fetch.readthedocs.io.
 
 
 Overview
