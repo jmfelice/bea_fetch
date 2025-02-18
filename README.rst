@@ -2,17 +2,6 @@
 bea_fetch
 =========
 
-
-.. image:: https://img.shields.io/pypi/v/bea_fetch.svg
-        :target: https://pypi.python.org/pypi/bea_fetch
-
-.. image:: https://img.shields.io/travis/jmfelice/bea_fetch.svg
-        :target: https://travis-ci.com/jmfelice/bea_fetch
-
-.. image:: https://readthedocs.org/projects/bea-fetch/badge/?version=latest
-        :target: https://bea-fetch.readthedocs.io/en/latest/?version=latest
-        :alt: Documentation Status
-
 * Free software: MIT license
 * Documentation: https://bea-fetch.readthedocs.io.
 
