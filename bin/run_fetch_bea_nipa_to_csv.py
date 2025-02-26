@@ -11,6 +11,7 @@ if __name__ == "__main__":
         table=sys.argv[2],
         year=sys.argv[3],
         frequency=sys.argv[4],
-        output_file=sys.argv[5]
+        output_file=sys.argv[5], 
+        overwrite=False
     ) 
     

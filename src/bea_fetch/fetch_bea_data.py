@@ -1,6 +1,8 @@
 import urllib.request
 import json
 import sys
+import csv
+import os
 from .util import write_to_csv
 
 def fetch_bea_nipa_data(api_key, table, year, frequency):
@@ -46,20 +48,7 @@ def fetch_bea_nipa_data(api_key, table, year, frequency):
             raise ValueError(f"BEA API Error: {data['BEAAPI']['error']}")
 
         results = data['BEAAPI']['Results']
-        
-        # Handle both single and multiple table responses
-        if isinstance(results, dict):
-            if 'Data' in results:
-                return results['Data']
-            else:
-                # For multiple tables, combine all data
-                all_data = []
-                for table_id in results:
-                    if 'Data' in results[table_id]:
-                        all_data.extend(results[table_id]['Data'])
-                return all_data
-        
-        raise ValueError("Unexpected API response structure")
+        return results['Data']
             
     except urllib.error.HTTPError as e:
         print(f"HTTP Error: {e.code} - {e.reason}")
@@ -69,7 +58,7 @@ def fetch_bea_nipa_data(api_key, table, year, frequency):
         print("Failed to parse API response as JSON")
         raise
 
-def fetch_bea_nipa_data_to_csv(api_key, table, year, frequency, output_file, overwrite='yes'):
+def fetch_bea_nipa_data_to_csv(api_key, table, year, frequency, output_file, overwrite=True):
     """
     Fetch NIPA data from the BEA API and write it to a CSV file.
 
@@ -78,13 +67,35 @@ def fetch_bea_nipa_data_to_csv(api_key, table, year, frequency, output_file, ove
     :param year: The year for which to fetch data.
     :param frequency: The frequency of the data (e.g., 'A' for annual).
     :param output_file: The path to the output CSV file.
-    :param overwrite: Whether to overwrite the file if it exists (default is 'yes').
+    :param overwrite: Whether to overwrite the file if it exists (default is True).
     :raises Exception: If an error occurs during data fetching or writing to CSV.
     """
     try:
         result = fetch_bea_nipa_data(api_key, table, year, frequency)
         print(f"Received {len(result) if result else 0} records from API")
-        write_to_csv(result, output_file, overwrite)
+        
+        # Include headers in the CSV
+        if result:
+            headers = result[0].keys()  # Get the keys from the first record
+            file_mode = 'w' if overwrite else 'a'  # Set file mode based on overwrite flag
+            
+            # Check if the file exists and if we are not overwriting
+            if not overwrite and os.path.exists(output_file):
+                # If appending, do not write headers
+                file_mode = 'a'
+            else:
+                # If overwriting, write headers
+                with open(output_file, 'w', newline='') as csvfile:
+                    writer = csv.DictWriter(csvfile, fieldnames=headers)
+                    writer.writeheader()  # Write the header row
+            
+            # Write the data rows
+            with open(output_file, file_mode, newline='') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=headers)
+                writer.writerows(result)  # Write the data rows
+        else:
+            print("No data to write to CSV.")
+        
         print(f"Data successfully written to {output_file}")
     except Exception as e:
         print(f"An error occurred: {str(e)}")

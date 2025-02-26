@@ -1,14 +1,14 @@
 import csv
 import os
 
-def write_to_csv(data, file_path, overwrite='yes'):
+def write_to_csv(data, file_path, overwrite=True):
     """
     Write data to a CSV file.
 
     Parameters:
     data (list): A list of dictionaries containing the data to write.
     file_path (str): The path to the output CSV file.
-    overwrite (str): 'yes' to overwrite the file, 'no' to append to it.
+    overwrite (bool): True to overwrite the file, False to append to it.
 
     Returns:
     None
@@ -21,7 +21,7 @@ def write_to_csv(data, file_path, overwrite='yes'):
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
     # Determine the file mode based on the overwrite parameter
-    mode = 'w' if overwrite.lower() == 'yes' else 'a'
+    mode = 'w' if overwrite else 'a'
         
     with open(file_path, mode, newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=data[0].keys())
